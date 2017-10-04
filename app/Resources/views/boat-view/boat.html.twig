@@ -1,0 +1,35 @@
+    {% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Boat</h1>
+
+                {{ form_start(boatForm) }}
+                {{ form_row(boatForm.hullLength) }}
+                {{  form_row(boatForm.lengthUnit) }}
+                {{ form_row(boatForm.buttockAngle) }}
+                {{ form_row(boatForm.displacement) }}
+                {{  form_row(boatForm.dispUnit) }}
+                <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+                {{ form_end(boatForm) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {% if hpRequirement %}
+                <h1>Power Requirements (HP)</h1>
+                    <table class="table table-striped table-bordered table-hover table-condensed">
+                        <thead><tr><th>Speed (kts)</th><th>Power Required (HP)</th></tr></thead>
+                        <tbody>
+                        {% for speedPower in hpRequirement %}
+                        <tr><td>{{ speedPower.speed }}</td><td>{{ speedPower.power }}</td></tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

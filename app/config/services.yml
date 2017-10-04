@@ -1,0 +1,15 @@
+# app/config/services.yml
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    # makes classes in src/AppBundle available to be used as services
+    AppBundle\:
+        resource: '../../src/AppBundle/*'
+
+    AppBundle\Repository\ButtockAngleRepository:
+        factory: 'doctrine.orm.entity_manager:getRepository'
+        arguments: ['AppBundle\Entity\EntityManager']
