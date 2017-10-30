@@ -54,7 +54,7 @@ class CalculateRequirementTest extends TestCase
         $this->assertEquals($expected, round($wymanCoefficient, 3));
     }
 
-    public function testCalculateDisplacementInLBS()
+    public function testCalculateDisplacementInLBSfromKGS()
     {
         $kgBoat = $this->getMockBuilder(Boat::class)
             ->disableOriginalConstructor()
@@ -68,7 +68,10 @@ class CalculateRequirementTest extends TestCase
         $lbValue = $calc->calculateDisplacementInLBS();
 
         $this->assertEquals(2204.62, round($lbValue, 2));
+    }
 
+    public function testCalculateDisplacementInLBSfromGrams()
+    {
         $gBoat = $this->getMockBuilder(Boat::class)
             ->disableOriginalConstructor()
             ->disableOriginalClone()
@@ -82,7 +85,7 @@ class CalculateRequirementTest extends TestCase
         $this->assertEquals(2204.62, round($lbValue, 2));
     }
 
-    public function testConvertToFeet()
+    public function testConvertToFeetFromMetres()
     {
         $boat10m = $this->getMockBuilder(Boat::class)
             ->disableOriginalConstructor()
@@ -95,7 +98,10 @@ class CalculateRequirementTest extends TestCase
         $calc = new CalculateRequirement($boat10m);
         $feetValue = $calc->convertToFeet();
         $this->assertEquals(32.81, round($feetValue, 2));
+    }
 
+    public function testConvertToFeetFromInches()
+    {
         $boat312ft = $this->getMockBuilder(Boat::class)
             ->disableOriginalConstructor()
             ->disableOriginalClone()

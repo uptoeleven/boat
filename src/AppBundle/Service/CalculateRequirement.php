@@ -40,16 +40,22 @@ class CalculateRequirement
         // plane speed
         $nominalHullSpeed = $this->calculateHullSpeed();
         $speedPowerCurve = [];
+
+        //generate first section of curve
         for ($i=1; $i<=$nominalHullSpeed; $i++) {
             $speedPowerCurve[] = [
                 'speed' => $i,
                 'power' => round($this->calculateHorsePower($i), 2)
             ];
         }
+
+        //add in the nominal hull speed at the appropriate point
         $speedPowerCurve[] = [
             'speed' => round($nominalHullSpeed, 2) . ' (Nominal Hull Speed)',
             'power' => round($this->calculateHorsePower($nominalHullSpeed), 2)
         ];
+
+        //complete the curve
         for ($i=(intval($nominalHullSpeed) + 1); $i<=$maxSpeed; $i++) {
             $speedPowerCurve[] = [
                 'speed' => $i,
